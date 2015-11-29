@@ -6,7 +6,6 @@
 package prog6a;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyAdapter;
@@ -26,6 +25,7 @@ public class GUI extends JPanel {
     private Ellipse2D me;
 
     public GUI(){
+        this.setBackground(Color.CYAN);
         //this.setPreferredSize(new Dimension(700, 700));
         castle = new CastleMap();
         
@@ -49,14 +49,13 @@ public class GUI extends JPanel {
                     direction = 3;
                 if( direction != -1){
                     if(castle.movePlayer(castle.getActivatedPlayer(), direction)){
-                        System.out.println("check");
                         for(int i = 0; i < castle.getPlayerArr().length; ++i){
                             if(castle.getPlayerArr()[i] == castle.getActivatedPlayer()){
                                 if(i < castle.getPlayerArr().length - 1){
-                                    castle.setActivatedPlayer(castle.getPlayerArr()[0]);
-                                }
-                                else{ 
                                     castle.setActivatedPlayer(castle.getPlayerArr()[i+1]);
+                                }
+                                else{   
+                                    castle.setActivatedPlayer(castle.getPlayerArr()[0]);
                                 }
                                 break;
                             }      
@@ -84,7 +83,9 @@ public class GUI extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.BLUE);
+        g2d.drawString("Lives: "+castle.getActivatedPlayer().numLives(), 25, 25);
         g2d.draw(me);
+        g2d.drawString(castle.getActivatedPlayer().getName(), (float)me.getX() + 15, (float)me.getY() + 28);
         for (int i = 0; i < rooms.length; ++i) {
             g2d.draw(rooms[i]);
         }

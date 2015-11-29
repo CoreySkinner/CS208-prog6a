@@ -86,36 +86,56 @@ public class CastleMap {
     public boolean movePlayer(Player player, int direction){
         boolean moveSuccess = false;
         if(direction == 0){//moves to left room
-            if(player.moveToLeftRoom()){
+            if(player.moveToLeftRoom() == 2){
                 player.moveToRightRoom();
                 hashTable.remove(player);
                 player.moveToLeftRoom();
                 hashTable.insert(player);
                 moveSuccess = true;
+            }
+            else if(player.moveToLeftRoom() == 1){
+                hashTable.remove(player);
+                player.setCurrentRoom(rooms[(castleSide-1)/2]);
+                hashTable.insert(player);
             }
         }else if(direction == 1){//moves to right room
-            if(player.moveToRightRoom()){
+            if(player.moveToRightRoom() == 2){
                 player.moveToLeftRoom();
                 hashTable.remove(player);
                 player.moveToRightRoom();
                 hashTable.insert(player);
                 moveSuccess = true;
             }
+            else if(player.moveToRightRoom() == 1){
+                hashTable.remove(player);
+                player.setCurrentRoom(rooms[(castleSide-1)/2]);
+                hashTable.insert(player);
+            }
         }else if(direction == 2){//moves to front room
-            if(player.moveToFrontRoom()){
+            if(player.moveToFrontRoom() == 2){
                 player.moveToRearRoom();
                 hashTable.remove(player);
                 player.moveToFrontRoom();
                 hashTable.insert(player);
                 moveSuccess = true;
             }
+            else if(player.moveToFrontRoom() == 1){
+                hashTable.remove(player);
+                player.setCurrentRoom(rooms[(castleSide-1)/2]);
+                hashTable.insert(player);
+            }
         }else if(direction == 3){//moves to rear room
-            if(player.moveToRearRoom()){
+            if(player.moveToRearRoom() == 2){
                 player.moveToFrontRoom();
                 hashTable.remove(player);
                 player.moveToRearRoom();
                 hashTable.insert(player);
                 moveSuccess = true;
+            }
+            else if(player.moveToRearRoom() == 1){
+                hashTable.remove(player);
+                player.setCurrentRoom(rooms[(castleSide-1)/2]);
+                hashTable.insert(player);
             }
         }
         return moveSuccess;

@@ -5,6 +5,7 @@
  */
 package prog6a;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 
 /**

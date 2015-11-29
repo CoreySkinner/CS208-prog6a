@@ -11,6 +11,7 @@ package prog6a;
  */
 public class Room {
     private int roomID;
+    private boolean hasTrap;
     private Room leftRoom;
     private Room rightRoom;
     private Room frontRoom;
@@ -22,6 +23,7 @@ public class Room {
         rightRoom = right;
         frontRoom = front;
         rearRoom = rear;
+        hasTrap = false;
     }
     
     public Room getLeft(){
@@ -59,4 +61,11 @@ public class Room {
         return roomID;
     }
 
+    public void setTrap(boolean b){
+        hasTrap = b;
+    }
+    
+    public boolean hasTrap(){
+        return hasTrap;
+    }
 }
